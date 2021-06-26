@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+<head>
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link type="text/css" rel="stylesheet" href="css/zhulin_css.css">
+<link type="text/css" rel="stylesheet" href="css/iconfont/iconfont.css">
+<script src="js/move.js"></script>
+<script src="js/zhulin.js"></script>
+<script src="js/jquery-1.7.2.js"></script>
+<script src="js/shopping_car.js"></script>
+<script>
+	$(document).ready(function(){
+		//全选
+    $('#all_x').click(function(){
+			if($(this)[0].checked==true){
+				$('.input_s input').attr('checked',true);
+			}else{
+				$('.input_s input').removeAttr('checked');
+			};
+		});
+  });
+</script>
+</head>
+<body>
+<!-- header -->
+<!-- #BeginLibraryItem "/library/page_header_shopping_car.lbi" --><!-- #EndLibraryItem -->
+
+<!-- {if $step eq "cart"} -->
+  <div class="block">
+      <!-- 购物车内容 -->
+      {* 包含脚本文件 *}
+      {insert_scripts files='showdiv.js'}
+      <script type="text/javascript">
+        {foreach from=$lang.password_js item=item key=key}
+          var {$key} = "{$item}";
+        {/foreach}
+      </script>
+  </div> 
+
+
+<div class="cent_box1">
+    <ul class="shoping_jd">
+       <li class="act"><span class="nums">1</span><p>查看购物车</p></li>
+       <li><span class="nums">2</span><p>填写核对订单</p></li>
+       <li><span class="nums">3</span><p>支付订单</p></li>
+       <li><span class="nums">4</span><p>预约体检时间</p></li>
+    </ul>
+    <!--购物车列表-->    
+    <div class="all_input">
+      <div class="fl che_in"><input type="checkbox" id="all_x" />全选</div>
+      <div class="fl tc">套餐</div>
+      <div class="fl dj">单价</div>
+      <div class="fl sl">数量</div>
+      <div class="fl xj">小计</div>
+      <div class="fl cz">操作</div>
+    </div>
+ 
+    <div class="lis_bb"> 
+        <div class="all_list">
+          <div class="fl all_x"><input type="checkbox"  />北京平谷骨科医院1</div>
+        </div> 
+        <ul class="all_list1">
+            <li class="fl all_x1 input_s">
+              <input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a>
+            </li>
+            <li class="fl tc1">
+                <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+            </li>
+            <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+            <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+            <li class="fl xj"><span class="xjia1">189</span></li>
+            <li class="fl cz"><span class="sc">删除</span></li>
+        </ul>
+        <ul class="all_list1">
+            <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+            <li class="fl tc1">
+                <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+            </li>
+            <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+            <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+            <li class="fl xj"><span class="xjia1">189</span></li>
+            <li class="fl cz"><span class="sc">删除</span></li>
+        </ul>
+    </div>
+    <div class="lis_bb"> 
+        <div class="all_list">
+          <div class="fl all_x"><input type="checkbox"  />北京平谷骨科医院1</div>
+        </div> 
+        <ul class="all_list1">
+            <li class="fl all_x1 input_s">
+              <input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a>
+            </li>
+            <li class="fl tc1">
+                <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+            </li>
+            <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+            <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+            <li class="fl xj"><span class="xjia1">189</span></li>
+            <li class="fl cz"><span class="sc">删除</span></li>
+        </ul>
+        <ul class="all_list1">
+            <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+            <li class="fl tc1">
+                <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+            </li>
+            <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+            <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+            <li class="fl xj"><span class="xjia1">189</span></li>
+            <li class="fl cz"><span class="sc">删除</span></li>
+        </ul>
+    </div>         
+    
+    <div id="pos"></div>
+    <div class="jiesuan" id="nav1">
+      <div class="fl all_xz"><input type="checkbox" id="all_xz" />全选</div>
+      <div class="fl jies_l">已选择<span>0</span>件</div>
+      <div class="fr jies_r">
+        合计：<span class="ja">￥</span>
+        <span class="ja" id="ja">0</span>
+        <span class="text_line_th" id="yj_he">0</span>
+        <input type="button" value="去结算" class="js_bt fr" />
+      </div>
+    </div>
+    <div class="list_box" id="xidi">
+      <div class="list_tj">
+        <div>推荐体检</div>
+      </div>   
+      <div class="list">
+        <div class="a">
+            <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+            <div class="tag_j">
+                <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+            </div>
+            <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+        </div>
+        <div class="a">
+            <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+            <div class="tag_j">
+                <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+            </div>
+            <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+        </div>
+        <div class="a">
+            <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+            <div class="tag_j">
+                <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+            </div>
+            <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+        </div>
+        <div class="a">
+            <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+            <div class="tag_j">
+                <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+            </div>
+            <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+        </div>
+      </div>
+    </div>  
+
+</div>
+
+<!--foot-->
+<div class="foot_box">
+  <div class="foot">
+      <div class="foot_left fl">
+          <dl class="fl">
+                <dt><h3>服务指南</h3></dt>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>特色服务</h3></dt>
+                <dd><a href="#">免卡预约</a></dd>
+                <dd><a href="#">免卡预约</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>企业客户</h3></dt>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>关于我们</h3></dt>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+            </dl>
+        </div>     
+      <div class="foot_right fr">
+             <div class="fl erwei1"><img src="img/weibo.jpg" >关注新浪微博<br>了解实时动态</div>
+             <div class="fr erwei2"><img src="img/tenxun.jpg" >关注官方微信<br>百万享币放送</div>
+      </div>
+      <div class="ph"><span>客服电话&nbsp;|</span>400-850-8585</div>
+      <div class="Copyright">Copyright(C)2010-2018享服体检网版权所有 工信部备案号:粤ICP备11060749号-8</div>
+    </div>
+</div>
+<div class="r_nav">
+  <a href="#"><i class="icon iconfont">&#xe632;</i><br>我的</a>
+  <a href="#"><i class="icon iconfont">&#xe62e;</i><br>购物车</a>
+  <a href="javascript:;" id="weixin"><i class="icon iconfont">&#xe633;</i><br>微信<div class="erwec"><img src="img/erwei.jpg" width="288" height="280"></div></a>
+  <a href="#"><i class="icon iconfont">&#xe621;</i><br>客服</a>
+  <a href="javascript:;" id="totop"><i class="icon iconfont">&#xe606;</i><br>返顶</a>
+</div>
+
+
+</body>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

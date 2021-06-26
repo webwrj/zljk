@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>竹林健康</title>
+<link type="text/css" rel="stylesheet" href="css/zhulin_css.css">
+<link type="text/css" rel="stylesheet" href="css/iconfont/iconfont.css">
+<script src="js/move.js"></script>
+<script src="js/zhulin.js"></script>
+<script src="js/jquery-1.7.2.js"></script>
+<script>
+	$(document).ready(function(){
+		//全选所有商品，并执行一次核算
+      $('#all_x').click(function(){
+		 	if($(this).is(':checked')){ 
+		 		$(':checkbox').attr('checked',true);
+		 	}else{
+		 		$(':checkbox').removeAttr('checked');
+		 	};
+		 });
+		  $('#all_xz').click(function(){
+		 	if($(this).is(':checked')){ 
+		 		$(':checkbox').attr('checked',true);
+		 	}else{
+		 		$(':checkbox').removeAttr('checked');
+		 	};
+		 });
+	//减少商品，并且会核算全部
+	$('.down').click(function(){
+		var index=$(this).index('.down');
+		var money=$(':text').eq(index);
+		var moneyAll=$('.xjia').eq(index);
+		var all=$('.xjia1').eq(index);
+		money.val(parseInt(money.val())-1);
+		// alert(money.val())
+		all.html(parseInt(moneyAll.html())*parseInt(money.val()));
+	});
+  //减少商品，并且会核算全部
+	$('.up').click(function(){
+		var money=$(':text').eq($(this).index('.up'));
+		var moneyAll=$('.xjia').eq($(this).index('.up'));
+		var all=$('.xjia1').eq($(this).index('.up'));
+		money.val(parseInt(money.val())+1);
+		all.html(parseInt(moneyAll.html())*parseInt(money.val()));
+	}); 
+  //给所有的a标签和input标签加一个事件执行一次核算   
+  $('input,a').click(setNum);
+	
+	$('.all_x :checkbox').each(function(){
+		$(this).click(function(){
+			if($(this).is(':checked')){ 
+			$('.lis_bb').eq($(this).parent().index('.all_x')).find(':checkbox').attr('checked',true);
+        //执行一次核算,点击立即执行核算的时候所有的checked还没有改变，所以要再加一次事件
+		    setNum();
+			}else{
+				$('.lis_bb').eq($(this).parent().index('.all_x')).find(':checkbox').removeAttr('checked');
+        //执行一次核算
+        setNum();
+			};
+      inverse();
+      
+     
+		});
+	});
+//核算购物车中所有商品数量和价格封装
+function setNum(){
+    $('#ja').html('0');
+	$('#yj_he').html('0');
+    $('.jies_l span').html('0');
+    // alert(1)
+    $('.input_s :checkbox').each(function(){
+        if($(this).is('.input_s :checked')){
+            $('#ja').html(parseInt($('#ja').html())+parseInt($('.xjia1').eq($(this).index('.input_s :checkbox')).html()));
+            $('.jies_l span').html(parseInt($('.jies_l span').html())+parseInt($(':text').eq($(this).index('.input_s :checkbox')).val()))
+			$('#yj_he').html(parseInt($('#yj_he').html())+parseInt($('.text_line_th').html()))
+        }
+    })
+}
+
+
+$('.input_s :checkbox').click(function(){
+  if($(this).parent().parent().parent().find('.all_x1 :checked').size()==$(this).parent().parent().parent().find('.all_x1 :checkbox').size()){
+    $(this).parent().parent().parent().find('.all_x :checkbox').attr('checked',true);
+  }else{
+    $(this).parent().parent().parent().find('.all_x :checkbox').removeAttr('checked');
+  };
+  inverse();
+});
+
+$('.sc').click(function(){
+    var oPar=$(this).parent().parent().parent();
+    if(oPar.find('ul').size()==1){
+      oPar.remove();
+    }else{
+      $(this).parent().parent().remove();
+    };
+    if(oPar.find('.all_x1 :checked').size()==oPar.find('.all_x1 :checkbox').size()){
+      oPar.find('.all_x :checkbox').attr('checked',true);
+    }else{
+      oPar.find('.all_x :checkbox').removeAttr('checked');
+  };
+    setNum(); 
+    inverse(); 
+});
+  // li ul div
+
+  //反选功能封装
+  function inverse(){
+    if($('.all_x').find(':checked').size()!=$('.all_x :checkbox').size()){
+        $('#all_x,#all_xz').removeAttr('checked');
+    }else{
+        $('#all_x,#all_xz').attr('checked',true);
+    }
+  }
+
+});
+</script>
+</head>
+
+<body>
+<!--top-->
+  <div class="top_box">
+   	<div class="top">
+        竹林健康，中国最大最全的健康体检平台！
+        <div class="fr"><a href="#">登录</a>|<a href="#">注册</a><a href="#" class="shop"><i class="icon iconfont">&#xe605;</i>购物车（<span>0</span>）</a></div>
+    </div>
+  </div>
+<!--logo-->
+    <div class="logo_box1">
+        <div class="fl"><img src="img/logo.png"></div><div class="fl logo_r">购物车</div><div class="fr"><img src="img/phoe.jpg" ></div>
+    </div>
+
+<div class="cent_box1">
+    <ul class="shoping_jd">
+       <li class="act"><span class="nums">1</span><p>查看购物车</p></li>
+       <li><span class="nums">2</span><p>填写核对订单</p></li>
+       <li><span class="nums">3</span><p>支付订单</p></li>
+       <li><span class="nums">4</span><p>预约体检时间</p></li>
+    </ul>
+<!--购物车列表-->    
+     <div class="all_input"><div class="fl che_in"><input type="checkbox" id="all_x" />全选</div><div class="fl tc">套餐</div><div class="fl dj">单价</div><div class="fl sl">数量</div><div class="fl xj">小计</div><div class="fl cz">操作</div></div>
+    <div class="lis_bb"> 
+        <div class="all_list"><div class="fl all_x"><input type="checkbox"  />北京平谷骨科医院1</div></div> 
+              <ul class="all_list1">
+                  <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+                  <li class="fl tc1">
+                      <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                      <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+                  </li>
+                  <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+                  <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+                  <li class="fl xj"><span class="xjia1">189</span></li>
+                  <li class="fl cz"><span class="sc">删除</span></li>
+              </ul>
+               <ul class="all_list1">
+                  <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+                  <li class="fl tc1">
+                      <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                      <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+                  </li>
+                  <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+                  <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+                  <li class="fl xj"><span class="xjia1">189</span></li>
+                  <li class="fl cz"><span class="sc">删除</span></li>
+              </ul>
+     </div> 
+     <div class="lis_bb"> 
+        <div class="all_list"><div class="fl all_x"><input type="checkbox"  />北京平谷骨科医院1</div></div> 
+              <ul class="all_list1">
+                  <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+                  <li class="fl tc1">
+                      <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                      <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+                  </li>
+                  <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+                  <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+                  <li class="fl xj"><span class="xjia1">189</span></li>
+                  <li class="fl cz"><span class="sc">删除</span></li>
+              </ul>
+               <ul class="all_list1">
+                  <li class="fl all_x1 input_s"><input type="checkbox"/><a href="#"><img src="img/shop.jpg"></a></li>
+                  <li class="fl tc1">
+                      <h3><a href="#">北京平谷骨科医院入职体检套餐（男女通用）</a></h3>
+                      <p>此套餐为入职体检套餐，特别适合入职人群体检，在常规必备检查的基础上增加了胸片、心电图、肝胆脾胰肾彩超、尿常规等检查项目</p>
+                  </li>
+                  <li class="fl dj"><div class="tx"><span class="text_line_th">1209</span><span class="xjia">189.80</span></div></li>
+                  <li class="fl sl"><div class="num_mall_1"><a href="javascript:;" class="fl down">-</a><input type="text" value="1" ><a href="javascript:;" class="fl up">+</a></div></li>
+                  <li class="fl xj"><span class="xjia1">189</span></li>
+                  <li class="fl cz"><span class="sc">删除</span></li>
+              </ul>
+     </div>
+           
+    
+    <div id="pos"></div>
+    <div class="jiesuan" id="nav1"><div class="fl all_xz"><input type="checkbox" id="all_xz" />全选</div><div class="fl jies_l">已选择<span>0</span>件</div><div class="fr jies_r">合计：<span class="ja">￥</span><span class="ja" id="ja">0</span><span class="text_line_th" id="yj_he">0</span><input type="button" value="去结算" class="js_bt fr" /></div></div>
+ <div class="list_box" id="xidi">
+    <div class="list_tj">
+    	<div>推荐体检</div>
+    </div>   
+    <div class="list">
+      <div class="a">
+          <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+          <div class="tag_j">
+              <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+          </div>
+          <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+      </div>
+      <div class="a">
+          <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+          <div class="tag_j">
+              <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+          </div>
+          <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+      </div>
+      <div class="a">
+          <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+          <div class="tag_j">
+              <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+          </div>
+          <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+      </div>
+      <div class="a">
+          <div class="pic"><img src="img/pic.jpg"><div class="zhe">丰台区</div></div>
+          <div class="tag_j">
+              <span class="fl price cart_jg">￥899</span><span class="fl text_line_th">￥1209</span><span class="fr sold">已售59份</span>
+          </div>
+          <h2 class="teile_list"><a href="#">[北京大学首钢医院]入职体检项目（男女通用）</a></h2>
+      </div>
+
+  </div>
+</div>    
+    
+</div>
+	
+<!--foot-->
+<div class="foot_box">
+	<div class="foot">
+      <div class="foot_left fl">
+        	<dl class="fl">
+                <dt><h3>服务指南</h3></dt>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+                <dd><a href="#">购卡须知</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>特色服务</h3></dt>
+                <dd><a href="#">免卡预约</a></dd>
+                <dd><a href="#">免卡预约</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>企业客户</h3></dt>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+                <dd><a href="#">企业服务</a></dd>
+            </dl>
+            <dl class="fl">
+                <dt><h3>关于我们</h3></dt>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+                <dd><a href="#">平台介绍</a></dd>
+            </dl>
+        </div>     
+      <div class="foot_right fr">
+             <div class="fl erwei1"><img src="img/weibo.jpg" >关注新浪微博<br>了解实时动态</div>
+             <div class="fr erwei2"><img src="img/tenxun.jpg" >关注官方微信<br>百万享币放送</div>
+      </div>
+      <div class="ph"><span>客服电话&nbsp;|</span>400-850-8585</div>
+      <div class="Copyright">Copyright(C)2010-2018享服体检网版权所有 工信部备案号:粤ICP备11060749号-8</div>
+    </div>
+</div>
+<div class="r_nav">
+  <a href="#"><i class="icon iconfont">&#xe632;</i><br>我的</a>
+  <a href="#"><i class="icon iconfont">&#xe62e;</i><br>购物车</a>
+  <a href="javascript:;" id="weixin"><i class="icon iconfont">&#xe633;</i><br>微信<div class="erwec"><img src="img/erwei.jpg" width="288" height="280"></div></a>
+  <a href="#"><i class="icon iconfont">&#xe621;</i><br>客服</a>
+  <a href="javascript:;" id="totop"><i class="icon iconfont">&#xe606;</i><br>返顶</a>
+</div>
+</body>
+<script>
+oWeiX();
+toTop();
+botNav();
+</script>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>
